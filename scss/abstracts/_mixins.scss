@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use 'tokens' as *;
+
+@function esp($n) {
+  @return map.get($espacio, $n);
+}
+
+@mixin desde($q) {
+  @media (min-width: map.get($quiebres, $q)) {
+    @content;
+  }
+}
+
+@mixin foco($color: $petroleo) {
+  outline: 3px solid $color;
+  outline-offset: 3px;
+}
+
+// Regla milimetrada: el motivo de la marca. Remite a las medidas en milímetros de cada armazón.
+@mixin regla($color, $ancho: 120px) {
+  display: block;
+  width: $ancho;
+  height: 12px;
+  border-bottom: 2px solid $color;
+  background:
+    repeating-linear-gradient(90deg, $color 0 2px, transparent 2px 10px) bottom / 100% 6px no-repeat,
+    repeating-linear-gradient(90deg, $color 0 2px, transparent 2px 50px) bottom / 100% 12px no-repeat;
+}
+
+// Oculta el input pero lo deja usable con teclado y lector de pantalla.
+@mixin input-oculto {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}

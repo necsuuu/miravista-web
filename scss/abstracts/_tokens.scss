@@ -1,0 +1,41 @@
+// Papel frío y tinta azul petróleo como base; lima como único color de acción.
+// El estudio del probador va oscuro porque los reflejos de los cristales se leen mejor sobre fondo profundo.
+$papel: #F2F5F4;
+$blanco: #FFFFFF;
+$tinta: #0D1B24;
+$tinta-2: #16262F;
+$tinta-3: #22343F;
+$gris: #4A5D68;
+$gris-claro: #9FB1BB;
+$lima: #C6F432;
+$lima-oscura: #A9D61C;
+$petroleo: #0B6E66;
+$abierto: #1F7A3A;
+
+// Unbounded: geométrica y ancha, como las rotulaciones de instrumentos ópticos; solo en títulos grandes.
+// Atkinson Hyperlegible Next: diseñada por el Braille Institute para personas con baja visión.
+$fuente-titulo: 'Unbounded', 'Arial Black', system-ui, sans-serif;
+$fuente-texto: 'Atkinson Hyperlegible Next', 'Segoe UI', system-ui, sans-serif;
+
+$radio-chico: 8px;
+$radio: 16px;
+
+$espacio: (1: 0.25rem, 2: 0.5rem, 3: 1rem, 4: 1.5rem, 5: 2.5rem, 6: 4rem, 7: 6rem);
+$ancho-max: 1200px;
+$quiebres: (tablet: 640px, compu: 1000px);
+
+// Muestras de color para el probador (mismas que el modelo 3D).
+$muestras-armazon: (
+  negro: #08090a,
+  carey: linear-gradient(135deg, #3a1d0c 0 30%, #c47830 30% 45%, #6b3a1c 45% 70%, #3a1d0c 70%),
+  dorado: linear-gradient(135deg, #f0d68f, #b08a3e),
+  cristal: linear-gradient(135deg, rgba(223, 231, 234, 0.9), rgba(223, 231, 234, 0.35)),
+  oliva: #4d5a3a,
+);
+$muestras-cristal: (
+  receta: linear-gradient(135deg, #f7fcfd, #d5e8ec),
+  gris: #2b2f33,
+  verde: #2f4a33,
+  marron: #5a3a22,
+  espejado: linear-gradient(135deg, #8ec5f5, #2a6fb0 55%, #163d66),
+);

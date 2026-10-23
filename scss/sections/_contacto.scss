@@ -1,0 +1,156 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.opiniones {
+  display: grid;
+  gap: esp(5);
+
+  @include desde(compu) {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  }
+
+  &__nota {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: esp(3);
+  }
+
+  &__puntaje {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: esp(3);
+    color: $gris;
+  }
+
+  &__numero {
+    font-family: $fuente-titulo;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: $tinta;
+  }
+
+  &__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: esp(3);
+
+    @include desde(tablet) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+}
+
+.cita {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: esp(3);
+  padding: esp(4);
+  border-radius: $radio;
+  background: $papel;
+
+  blockquote {
+    margin: 0;
+  }
+
+  span {
+    font-size: 0.9rem;
+    color: $gris;
+  }
+}
+
+.visitanos {
+  display: grid;
+  gap: esp(5);
+
+  @include desde(compu) {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  &__texto {
+    display: flex;
+    flex-direction: column;
+    gap: esp(3);
+
+    > p {
+      color: $gris;
+      max-width: 50ch;
+    }
+  }
+
+  &__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: esp(3);
+  }
+}
+
+.datos {
+  margin: esp(2) 0 0;
+  display: grid;
+  gap: esp(3);
+
+  dt {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $petroleo;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+.horarios {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+
+  caption {
+    text-align: left;
+    font-family: $fuente-titulo;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: esp(3);
+  }
+
+  th,
+  td {
+    padding: esp(3) esp(2);
+    border-bottom: 1px solid #d3dcdf;
+    text-align: left;
+  }
+
+  td {
+    text-align: right;
+    color: $gris;
+  }
+
+  tr.hoy {
+    th,
+    td {
+      background: $tinta;
+      color: $papel;
+      font-weight: 700;
+    }
+
+    span {
+      color: $lima;
+      font-size: 0.85rem;
+      margin-left: esp(1);
+    }
+  }
+}

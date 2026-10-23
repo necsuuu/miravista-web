@@ -1,0 +1,306 @@
+@use 'sass:map';
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.seccion-probador {
+  background: $tinta;
+  color: $papel;
+  padding-block: esp(5) esp(6);
+
+  :focus-visible {
+    @include foco($lima);
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: esp(3);
+    max-width: 760px;
+    margin-bottom: esp(5);
+  }
+
+  &__bajada {
+    color: $gris-claro;
+    font-size: 1.1rem;
+    max-width: 56ch;
+  }
+}
+
+.probador {
+  display: grid;
+  gap: esp(4);
+
+  @include desde(compu) {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  &--estatico {
+    p {
+      color: $gris-claro;
+    }
+  }
+
+  // Estudio: la luz cenital ilumina el anteojo y deja los bordes en penumbra.
+  &__escenario {
+    position: relative;
+    border-radius: $radio;
+    border: 1px solid $tinta-3;
+    background: radial-gradient(ellipse at 50% 30%, $tinta-3, $tinta-2 55%, $tinta 100%);
+    aspect-ratio: 4 / 3.4;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+
+    @include desde(compu) {
+      position: sticky;
+      top: 5rem;
+    }
+  }
+
+  &__lienzo {
+    position: absolute;
+    inset: 0;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    &:focus-visible {
+      outline-offset: -4px;
+    }
+  }
+
+  &__aviso {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: esp(4);
+    text-align: center;
+    color: $gris-claro;
+
+    &--error {
+      align-content: center;
+      gap: esp(3);
+      background: $tinta-2;
+
+      img {
+        max-width: 70%;
+      }
+    }
+  }
+
+  &__vistas {
+    position: absolute;
+    left: esp(3);
+    bottom: esp(3);
+    display: flex;
+    gap: esp(2);
+
+    button {
+      min-height: 44px;
+      min-width: 52px;
+      padding: 0 esp(3);
+      border-radius: $radio-chico;
+      border: 1px solid $gris;
+      background: rgba($tinta, 0.75);
+      color: $papel;
+      font-weight: 700;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $lima;
+      }
+    }
+  }
+
+  &__pista {
+    position: absolute;
+    right: esp(3);
+    top: esp(3);
+    font-size: 0.85rem;
+    color: $gris-claro;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    gap: esp(4);
+  }
+
+  &__consultar {
+    align-self: stretch;
+  }
+
+  &__nota {
+    font-size: 0.9rem;
+    color: $gris-claro;
+  }
+}
+
+.opciones {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+
+  legend {
+    padding: 0;
+    margin-bottom: esp(2);
+    font-weight: 700;
+    color: $gris-claro;
+  }
+
+  &__lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: esp(2);
+  }
+}
+
+.opcion {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: esp(2);
+  min-height: 44px;
+  padding: 0 esp(3);
+  border: 2px solid $tinta-3;
+  border-radius: $radio-chico;
+  background: $tinta-2;
+  font-weight: 700;
+  cursor: pointer;
+
+  input {
+    @include input-oculto;
+  }
+
+  &:hover {
+    border-color: $gris-claro;
+  }
+
+  &.is-elegida {
+    border-color: $lima;
+    background: $tinta-3;
+  }
+
+  &:has(input:focus-visible) {
+    @include foco($lima);
+  }
+
+  &__muestra {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba($papel, 0.5);
+  }
+}
+
+@each $nombre, $fondo in $muestras-armazon {
+  .opcion__muestra--armazon-#{$nombre} {
+    background: $fondo;
+  }
+}
+
+@each $nombre, $fondo in $muestras-cristal {
+  .opcion__muestra--cristal-#{$nombre} {
+    background: $fondo;
+  }
+}
+
+// Ficha técnica con el plano frontal: el motivo de las medidas en milímetros.
+.medidas {
+  display: flex;
+  flex-direction: column;
+  gap: esp(2);
+  padding: esp(4);
+  border-radius: $radio;
+  border: 1px solid $tinta-3;
+  background: $tinta-2;
+
+  &__titulo {
+    font-weight: 700;
+    color: $gris-claro;
+  }
+
+  &__codigo {
+    display: flex;
+    align-items: baseline;
+    gap: esp(2);
+    font-family: $fuente-titulo;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  }
+
+  &__num {
+    display: inline-flex;
+    align-items: baseline;
+    gap: esp(2);
+    min-height: 44px;
+    padding: 0 esp(1);
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: none;
+    color: $papel;
+    font: inherit;
+    cursor: pointer;
+
+    &.is-activa {
+      color: $lima;
+      border-bottom-color: $lima;
+    }
+  }
+
+  &__sep {
+    color: $gris-claro;
+    font-size: 0.8em;
+  }
+
+  &__plano {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+
+    text {
+      fill: $gris-claro;
+      font-size: 12px;
+      font-family: $fuente-texto;
+      font-weight: 700;
+    }
+  }
+
+  &__contorno {
+    fill: none;
+    stroke: $papel;
+    stroke-width: 1.5;
+  }
+
+  &__cota {
+    line {
+      stroke: $gris;
+      stroke-width: 1.5;
+    }
+
+    &.is-activa {
+      line {
+        stroke: $lima;
+        stroke-width: 2;
+      }
+
+      text {
+        fill: $lima;
+      }
+    }
+  }
+
+  &__ayuda {
+    font-size: 0.95rem;
+    color: $gris-claro;
+  }
+}

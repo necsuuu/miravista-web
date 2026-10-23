@@ -1,0 +1,31 @@
+{
+  "name": "miravista-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio de Óptica Miravista (datos ficticios)",
+  "type": "module",
+  "scripts": {
+    "build:fonts": "node scripts/copiar-fuentes.js",
+    "build:css": "sass scss/main.scss assets/css/main.css --style=compressed --no-source-map",
+    "build:js": "esbuild src/main.jsx --bundle --minify --format=iife --target=es2020 --jsx=automatic --outfile=assets/js/app.js",
+    "build": "npm run build:fonts && npm run build:css && npm run build:js",
+    "watch:css": "sass --watch scss/main.scss assets/css/main.css",
+    "watch:js": "esbuild src/main.jsx --bundle --format=iife --jsx=automatic --outfile=assets/js/app.js --watch",
+    "serve": "php -S localhost:8000",
+    "fotos": "node scripts/render-fotos.js",
+    "test": "node --test tests/*.test.js",
+    "paquete": "node scripts/empaquetar.js"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource-variable/unbounded": "^5.3.0",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.56.0",
+    "sass": "^1.105.1"
+  }
+}

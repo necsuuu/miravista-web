@@ -1,0 +1,82 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.estilos {
+  &__filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: esp(2);
+    margin-bottom: esp(4);
+  }
+
+  // Grilla pareja a propósito: son estilos equivalentes para comparar entre sí.
+  &__grilla {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: esp(3);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  }
+
+  &__vacio {
+    color: $gris;
+  }
+}
+
+.estilo {
+  display: flex;
+  flex-direction: column;
+  border-radius: $radio;
+  border: 1px solid #d9e1e4;
+  overflow: hidden;
+  background: $papel;
+
+  &__foto {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 30%, $tinta-3, $tinta 80%);
+    aspect-ratio: 900 / 640;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.25s ease;
+    }
+  }
+
+  &__frente {
+    opacity: 0;
+  }
+
+  &:hover &__frente,
+  &:focus-within &__frente {
+    opacity: 1;
+  }
+
+  &__falla {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: $gris-claro;
+    padding: esp(3);
+    text-align: center;
+  }
+
+  &__pie {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: esp(3);
+    padding: esp(3) esp(3) esp(4);
+
+    h3 {
+      font-family: $fuente-texto;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  }
+}

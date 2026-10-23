@@ -1,0 +1,61 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.seccion {
+  padding-block: esp(6);
+
+  @include desde(compu) {
+    padding-block: esp(7);
+  }
+
+  &--estilos,
+  &--opiniones {
+    background: $blanco;
+  }
+}
+
+.titular {
+  display: flex;
+  flex-direction: column;
+  gap: esp(3);
+  max-width: 720px;
+  margin-bottom: esp(5);
+
+  &--angosto {
+    max-width: 620px;
+  }
+
+  p {
+    color: $gris;
+  }
+
+  &__regla {
+    @include regla($petroleo);
+  }
+}
+
+.visitanos__texto .titular__regla {
+  @include regla($petroleo);
+}
+
+.pie {
+  background: $tinta;
+  color: $gris-claro;
+  padding-block: esp(5) 7rem;
+  font-size: 0.95rem;
+
+  &__fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: esp(2) esp(4);
+  }
+
+  strong {
+    color: $papel;
+  }
+
+  @include desde(compu) {
+    padding-block: esp(5);
+  }
+}

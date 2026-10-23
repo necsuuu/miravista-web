@@ -1,0 +1,106 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.comparador {
+  &__modos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: esp(2);
+    margin-bottom: esp(4);
+  }
+
+  &__cuerpo {
+    display: grid;
+    gap: esp(4);
+
+    @include desde(compu) {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  &__visor {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: esp(2);
+
+    figcaption {
+      font-size: 0.9rem;
+      color: $gris;
+    }
+  }
+
+  &__marco {
+    position: relative;
+    border-radius: $radio;
+    overflow: hidden;
+    background: $tinta;
+    touch-action: pan-y;
+    cursor: ew-resize;
+    user-select: none;
+
+    canvas {
+      width: 100%;
+    }
+  }
+
+  // Línea divisoria con manija circular: el control que se arrastra.
+  &__linea {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    margin-left: -1.5px;
+    background: $lima;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 36px;
+      height: 36px;
+      margin: -18px 0 0 -18px;
+      border-radius: 50%;
+      border: 3px solid $lima;
+      background: rgba($tinta, 0.75);
+    }
+  }
+
+  &__etiqueta {
+    position: absolute;
+    top: esp(2);
+    padding: 4px 10px;
+    border-radius: $radio-chico;
+    background: rgba($tinta, 0.82);
+    color: $papel;
+    font-size: 0.85rem;
+    font-weight: 700;
+    pointer-events: none;
+
+    &--izq {
+      left: esp(2);
+    }
+
+    &--der {
+      right: esp(2);
+    }
+  }
+
+  &__texto {
+    display: flex;
+    flex-direction: column;
+    gap: esp(3);
+
+    p {
+      color: $gris;
+    }
+  }
+
+  &__nota {
+    font-weight: 700;
+    color: $tinta !important;
+  }
+}

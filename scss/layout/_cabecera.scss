@@ -1,0 +1,125 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: $tinta;
+  color: $papel;
+  border-bottom: 1px solid $tinta-3;
+
+  &__fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: esp(3);
+    min-height: 4rem;
+  }
+
+  &__menu {
+    display: inline-flex;
+    align-items: center;
+    gap: esp(2);
+    min-height: 44px;
+    padding: 0 esp(3);
+    border: 2px solid $gris-claro;
+    border-radius: $radio-chico;
+    background: transparent;
+    color: $papel;
+    font-weight: 700;
+    cursor: pointer;
+
+    @include desde(compu) {
+      display: none;
+    }
+  }
+
+  &__menu-icono {
+    width: 18px;
+    height: 12px;
+    border-block: 2px solid currentColor;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 3px 0 auto;
+      border-top: 2px solid currentColor;
+    }
+  }
+
+  :focus-visible {
+    @include foco($lima);
+  }
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: esp(2);
+  min-height: 44px;
+  font-family: $fuente-titulo;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+
+  // Dos cristales dibujados con bordes: el logo provisorio hasta tener el real del local.
+  &__lentes {
+    width: 34px;
+    height: 14px;
+    background:
+      radial-gradient(circle at 25% 50%, transparent 5px, $lima 5px 7px, transparent 7px),
+      radial-gradient(circle at 75% 50%, transparent 5px, $lima 5px 7px, transparent 7px);
+  }
+}
+
+.nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: esp(1);
+  padding: esp(3) 1rem esp(4);
+  background: $tinta;
+  border-bottom: 1px solid $tinta-3;
+
+  &.is-abierta {
+    display: flex;
+  }
+
+  a:not(.boton) {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: none;
+    font-weight: 600;
+    color: $papel;
+
+    &:hover {
+      color: $lima;
+    }
+  }
+
+  .boton {
+    margin-top: esp(2);
+    align-self: flex-start;
+  }
+
+  @include desde(compu) {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: esp(4);
+    padding: 0;
+    border: 0;
+    background: none;
+
+    .boton {
+      margin-top: 0;
+    }
+  }
+}

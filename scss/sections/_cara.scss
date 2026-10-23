@@ -1,0 +1,126 @@
+@use '../abstracts/tokens' as *;
+@use '../abstracts/mixins' as *;
+
+.guia {
+  display: grid;
+  gap: esp(5);
+
+  &__caras {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: esp(2);
+
+    legend {
+      grid-column: 1 / -1;
+      padding: 0;
+      margin-bottom: esp(3);
+      font-weight: 700;
+    }
+  }
+
+  &__cara {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: esp(2);
+    padding: esp(3) esp(2);
+    border: 2px solid #d9e1e4;
+    border-radius: $radio-chico;
+    background: $blanco;
+    font-weight: 700;
+    cursor: pointer;
+
+    input {
+      @include input-oculto;
+    }
+
+    svg {
+      width: 44px;
+      height: 54px;
+      fill: none;
+      stroke: $tinta;
+      stroke-width: 6;
+    }
+
+    &:hover {
+      border-color: $gris;
+    }
+
+    &.is-elegida {
+      border-color: $tinta;
+      background: $tinta;
+      color: $papel;
+
+      svg {
+        stroke: $lima;
+      }
+    }
+
+    &:has(input:focus-visible) {
+      @include foco;
+    }
+  }
+
+  &__resultado {
+    display: grid;
+    gap: esp(4);
+    align-items: center;
+
+    @include desde(tablet) {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    }
+  }
+
+  &__texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: esp(3);
+
+    p {
+      color: $gris;
+      max-width: 52ch;
+    }
+  }
+
+  &__formas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: esp(2);
+  }
+}
+
+.cara {
+  width: 100%;
+  max-width: 300px;
+  justify-self: center;
+
+  &__silueta {
+    fill: $blanco;
+    stroke: $tinta;
+    stroke-width: 2.5;
+  }
+
+  &__ojo {
+    fill: $tinta;
+  }
+
+  &__boca {
+    fill: none;
+    stroke: $tinta;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+
+  &__anteojos path {
+    fill: rgba($petroleo, 0.12);
+    stroke: $petroleo;
+    stroke-width: 3;
+    transition: d 0.3s ease;
+  }
+}

@@ -1,0 +1,7 @@
+DirectoryIndex index.php
+Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(scss|src|tests|scripts|herramientas|node_modules)(/|$) - [F,L]
+  RewriteRule ^(package(-lock)?\.json|README\.md|herramientas)$ - [F,L]
+</IfModule>
